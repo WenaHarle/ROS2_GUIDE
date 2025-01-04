@@ -2,6 +2,8 @@
 
 Panduan ini menjelaskan langkah-langkah untuk menginstal ROS 2 Humble Hawksbill di Ubuntu dengan menggunakan paket debian (Ubuntu 22.04 direkomendasikan).
 
+---
+
 ## 2.1 Kebutuhan Sistem
 
 ### Sistem Operasi
@@ -27,7 +29,6 @@ Panduan ini menjelaskan langkah-langkah untuk menginstal ROS 2 Humble Hawksbill 
 - **Rekomendasi**: GPU dedicated seperti NVIDIA jika menggunakan simulasi visual yang berat.
 
 ### Perangkat Lunak
-
 - **CMake**: Versi 3.16 atau lebih baru.
 - **Python**: Versi 3.11 atau kompatibel.
 - **Colcon**: Untuk membangun workspace ROS 2.
@@ -48,9 +49,6 @@ Panduan ini menjelaskan langkah-langkah untuk menginstal ROS 2 Humble Hawksbill 
   - **C/C++**
 - **Colcon Helper**: Mempermudah proses build workspace ROS 2.
 
-## Catatan
-Jika ada beberapa syarat yang tidak bisa dipenuhi, disarankan untuk tidak melakukan instalasi ROS 2.
-
 ---
 
 ## 2.2 Instalasi ROS 2 Humble
@@ -60,20 +58,27 @@ Jika ada beberapa syarat yang tidak bisa dipenuhi, disarankan untuk tidak melaku
 2. Pilih bagian instalasi untuk Ubuntu atau sistem operasi yang diinginkan.
 ![Set Locale](images/openweb.png)
 
+---
+
 ### Langkah-Langkah Instalasi
 
 #### 1. Set Locale
-Set locale digunakan untuk mengatur bahasa dan format data agar konsisten, terutama untuk mencegah error parsing data. Default locale adalah `en_US.UTF-8`. Jalankan perintah berikut di terminal:
+Set locale digunakan untuk mengatur bahasa dan format data agar konsisten, terutama untuk mencegah error parsing data. Default locale adalah `en_US.UTF-8`.
+
 ```bash
 sudo locale-gen en_US en_US.UTF-8
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
 ```
 ![Set Locale](images/locale.png)
-Pastikan tidak ada error.
+
+> **Catatan**: Pastikan tidak ada error saat menjalankan perintah ini.
+
+---
 
 #### 2. Setup Resources
-Aktifkan *Ubuntu Universe Repository* jika belum aktif:
+
+**Aktifkan *Universe Repository*:**
 ```bash
 sudo apt update
 sudo apt install software-properties-common
@@ -81,43 +86,53 @@ sudo add-apt-repository universe
 ```
 ![Set Universe Repository](images/uniRep.png)
 
-Tambahkan ROS 2 GPG key:
+**Tambahkan GPG Key:**
 ```bash
 sudo apt update && sudo apt install curl -y
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key | sudo apt-key add -
 ```
-Tambahkan repository ROS 2 ke daftar sumber (sources list):
+
+**Tambahkan Repository ROS 2 ke Sources List:**
 ```bash
 echo "deb [trusted=yes] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/ros2-latest.list
 ```
 
+---
+
 #### 3. Instalasi ROS 2 Package
-Perbarui daftar repository dan instal ROS 2 Humble Desktop:
+Perbarui repository dan instal ROS 2 Humble Desktop:
 ```bash
 sudo apt update
 sudo apt install ros-humble-desktop
 ```
-ROS 2 Humble Desktop memiliki alat yang memadai untuk membuat paket kustom dan menggunakan paket yang sudah tersedia.
+
+> **Catatan**: ROS 2 Humble Desktop sudah mencakup alat yang memadai untuk pengembangan dan simulasi.
+
+---
 
 #### 4. Tambahkan ROS 2 ke Environment
-Tambahkan ROS 2 ke pengaturan environment untuk akses mudah:
+Tambahkan ROS 2 ke pengaturan environment untuk memudahkan akses:
 ```bash
 echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
-Pastikan tidak ada kesalahan pada langkah ini.
+
+> **Catatan**: Pastikan tidak ada kesalahan saat menjalankan perintah ini.
+
+---
 
 #### 5. Testing Instalasi
-Untuk memverifikasi instalasi, buka dua terminal:
-1. Pada terminal pertama, jalankan:
-   ```bash
-   ros2 run demo_nodes_cpp talker
-   ```
-2. Pada terminal kedua, jalankan:
-   ```bash
-   ros2 run demo_nodes_cpp listener
-   ```
-Jika terminal pertama dan kedua saling bertukar pesan, instalasi berhasil.
+Untuk memverifikasi instalasi:
+- **Terminal 1**:
+  ```bash
+  ros2 run demo_nodes_cpp talker
+  ```
+- **Terminal 2**:
+  ```bash
+  ros2 run demo_nodes_cpp listener
+  ```
+
+Jika kedua terminal saling bertukar pesan, instalasi berhasil.
 
 ---
 
@@ -125,4 +140,3 @@ Jika terminal pertama dan kedua saling bertukar pesan, instalasi berhasil.
 Jika Anda merasa kesulitan memahami ROS 2, ingatlah bahwa ini adalah bagian dari proses belajar. Namun, jika benar-benar menyerah, Anda dapat menjalankan perintah berikut untuk hiburan:
 ```bash
 echo "Tetap semangat belajar ROS 2! 😊"
-```
