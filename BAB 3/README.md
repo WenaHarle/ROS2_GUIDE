@@ -37,7 +37,6 @@ cd ~/ros2_ws
 ```
 
 ---
-
 ### 3. Build Workspace
 
 Gunakan alat build `colcon` untuk menginisialisasi dan membangun workspace:
@@ -53,7 +52,8 @@ colcon build
 Setelah build selesai, source workspace untuk mengoverlay lingkungan Anda:
 
 ```bash
-source install/setup.bash
+echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
+source ~/.bashrc
 ```
 
 ---
