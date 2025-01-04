@@ -133,6 +133,7 @@ Untuk memverifikasi instalasi:
   ```
 
 Jika kedua terminal saling bertukar pesan, instalasi berhasil.
+![Set Universe Repository](images/test.png)
 
 ---
 
