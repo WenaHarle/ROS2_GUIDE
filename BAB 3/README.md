@@ -52,8 +52,7 @@ colcon build
 Setelah build selesai, source workspace untuk mengoverlay lingkungan Anda:
 
 ```bash
-echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
-source ~/.bashrc
+source install/setup.bash
 ```
 
 ---
