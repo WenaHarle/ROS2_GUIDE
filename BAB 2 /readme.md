@@ -2,16 +2,58 @@
 
 Panduan ini menjelaskan langkah-langkah untuk menginstal ROS 2 Humble Hawksbill di Ubuntu dengan menggunakan paket debian (Ubuntu 22.04 direkomendasikan).
 
-## Prasyarat
+## Persyaratan Sebelum Menginstal ROS 2
 
-1. **Ubuntu 22.04 LTS**
-   - Pastikan Anda menggunakan Ubuntu 22.04 atau versi yang kompatibel.
+Sebelum melakukan instalasi ROS 2, pastikan Anda memenuhi beberapa persyaratan berikut:
 
-2. **Akses Internet**
-   - Dibutuhkan untuk mengunduh paket dan dependensi ROS 2.
+### 2.1 Kebutuhan Sistem
 
-3. **Hak Akses Administrator**
-   - Anda memerlukan hak `sudo` untuk instalasi.
+#### Sistem Operasi
+- **Ubuntu 22.04 (Jammy Jellyfish)** adalah OS yang secara resmi didukung.
+- Sistem operasi lain bisa digunakan, tetapi tidak dijamin kompatibilitasnya.
+
+#### Perangkat Keras (Hardware)
+
+##### Prosesor:
+- **Minimum**: Prosesor dual-core 64-bit.
+- **Rekomendasi**: Prosesor quad-core atau lebih tinggi untuk simulasi yang kompleks.
+
+##### RAM (Memori):
+- **Minimum**: 4 GB.
+- **Rekomendasi**: 8 GB atau lebih, terutama jika menggunakan banyak node atau simulasi intensif.
+
+##### Penyimpanan (Storage):
+- **Minimum**: 10 GB ruang kosong untuk instalasi.
+- **Rekomendasi**: Lebih dari 20 GB jika menggunakan proyek besar atau simulasi.
+
+##### Kartu Grafis:
+- **Diperlukan**: Dukungan OpenGL untuk alat visualisasi seperti Gazebo dan RViz, atau PyBullet.
+- **Rekomendasi**: GPU dedicated seperti NVIDIA jika menggunakan simulasi visual yang berat.
+
+#### Perangkat Lunak
+
+- **CMake**: Versi 3.16 atau lebih baru.
+- **Python**: Versi 3.11 atau kompatibel.
+- **Colcon**: Untuk membangun workspace ROS 2.
+- **Compiler**: `gcc`, `g++` (GNU Compiler Collection), dan `make`.
+- **Git**: Untuk manajemen kode sumber.
+- **Curl/Wget**: Untuk mengambil skrip instalasi.
+
+#### Rekomendasi Visual Studio Code
+
+##### Unduh dan Instal VS Code:
+- Kunjungi [Visual Studio Code](https://code.visualstudio.com/) untuk mengunduh.
+- Pastikan sesuai dengan arsitektur sistem Anda (x64).
+
+##### Ekstensi Wajib untuk ROS 2 di VS Code:
+- **ROS Extension Pack**: Instal melalui VS Code Extensions Marketplace. Paket ini mencakup:
+  - **ROS**
+  - **Python**
+  - **C/C++**
+- **Colcon Helper**: Mempermudah proses build workspace ROS 2.
+
+### Catatan
+Jika ada beberapa syarat yang tidak bisa dipenuhi, disarankan untuk tidak melakukan instalasi ROS 2.
 
 ---
 
