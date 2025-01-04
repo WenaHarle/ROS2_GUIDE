@@ -79,6 +79,8 @@ sudo apt update
 sudo apt install software-properties-common
 sudo add-apt-repository universe
 ```
+![Set Universe Repository](images/uniRep.png)
+
 Tambahkan ROS 2 GPG key:
 ```bash
 sudo apt update && sudo apt install curl -y
