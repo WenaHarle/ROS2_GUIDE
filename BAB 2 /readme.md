@@ -66,9 +66,14 @@ Panduan ini menjelaskan langkah-langkah untuk menginstal ROS 2 Humble Hawksbill 
 Set locale digunakan untuk mengatur bahasa dan format data agar konsisten, terutama untuk mencegah error parsing data. Default locale adalah `en_US.UTF-8`.
 
 ```bash
+locale  
+
+sudo apt update && sudo apt install locales
 sudo locale-gen en_US en_US.UTF-8
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+locale  
 ```
 ![Set Locale](images/locale.png)
 
