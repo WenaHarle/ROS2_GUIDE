@@ -68,6 +68,7 @@ sudo locale-gen en_US en_US.UTF-8
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
 ```
+![Set Locale](images/nama-gambar.png)
 Pastikan tidak ada error.
 
 #### 2. Setup Resources
