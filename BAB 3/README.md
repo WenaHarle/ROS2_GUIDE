@@ -18,11 +18,8 @@ Panduan ini menjelaskan langkah-langkah untuk menyiapkan workspace ROS 2 untuk p
 Source setup script ROS 2:
 
 ```bash
-source /opt/ros/<ros2_distro>/setup.bash
+source /opt/ros/humble/setup.bash
 ```
-
-Ganti `<ros2_distro>` dengan nama distribusi ROS 2 Anda (misalnya, `humble`).
-
 ---
 
 ### 2. Buat Workspace
