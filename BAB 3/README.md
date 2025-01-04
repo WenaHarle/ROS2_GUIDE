@@ -56,10 +56,26 @@ source install/setup.bash
 ```
 
 ---
+### 5. Otomatisasi Setup Lingkungan
 
-### 5. Tambahkan Paket ke Workspace
+Untuk secara otomatis men-source script setup ROS 2 dan workspace Anda, tambahkan baris berikut ke file `~/.bashrc`:
 
-Untuk menambahkan paket ROS 2:
+```bash
+source /opt/ros/<ros2_distro>/setup.bash
+source ~/ros2_ws/install/setup.bash
+```
+
+Terapkan perubahan:
+
+```bash
+source ~/.bashrc
+```
+
+---
+
+### 6. Cara Tambahkan Paket ke Workspace
+
+Cara Untuk menambahkan pre-build paket ROS 2 ke workspace anda:
 
 1. Masuk ke direktori `src`:
    ```bash
@@ -76,23 +92,6 @@ Untuk menambahkan paket ROS 2:
    cd ~/ros2_ws
    colcon build
    ```
-
----
-
-### 6. Otomatisasi Setup Lingkungan
-
-Untuk secara otomatis men-source script setup ROS 2 dan workspace Anda, tambahkan baris berikut ke file `~/.bashrc`:
-
-```bash
-source /opt/ros/<ros2_distro>/setup.bash
-source ~/ros2_ws/install/setup.bash
-```
-
-Terapkan perubahan:
-
-```bash
-source ~/.bashrc
-```
 
 ---
 
