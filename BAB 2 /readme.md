@@ -58,6 +58,7 @@ Jika ada beberapa syarat yang tidak bisa dipenuhi, disarankan untuk tidak melaku
 ### Langkah Persiapan
 1. Buka terminal dan navigasikan ke [panduan instalasi ROS 2](https://docs.ros.org/en/humble/Installation.html).
 2. Pilih bagian instalasi untuk Ubuntu atau sistem operasi yang diinginkan.
+![Set Locale](images/openweb.png)
 
 ### Langkah-Langkah Instalasi
 
