@@ -57,7 +57,7 @@ Jika ada beberapa syarat yang tidak bisa dipenuhi, disarankan untuk tidak melaku
 
 ---
 
-## Langkah-Langkah Instalasi
+## 2.2 Langkah-Langkah Instalasi
 
 ### 1. Persiapan Sistem
 
