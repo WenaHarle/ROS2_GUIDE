@@ -19,36 +19,6 @@ ros2_ws/           # Folder utama workspace
 3. **`install/`**: File hasil akhir setelah workspace dibangun. Digunakan agar ROS 2 mengenali package Anda.
 4. **`log/`**: Log atau catatan proses yang terjadi selama build.
 
-## Langkah-Langkah Membuat Workspace ROS 2
-
-### 1. Membuat Workspace Baru
-Buat folder baru untuk workspace Anda:
-```bash
-mkdir -p ~/ros2_ws/src
-```
-Masuk ke folder workspace:
-```bash
-cd ~/ros2_ws
-```
-
-### 2. Menambahkan Package Baru
-Tambahkan package baru di dalam folder `src`. Misalnya, untuk membuat package bernama "my_robot":
-```bash
-ros2 pkg create my_robot --build-type ament_cmake
-```
-
-### 3. Membangun Workspace
-Gunakan perintah `colcon build` untuk membangun seluruh workspace, termasuk semua package di dalamnya:
-```bash
-colcon build
-```
-
-### 4. Memuat Environment
-Setelah workspace berhasil dibangun, load environment untuk membuat ROS 2 mengenali package:
-```bash
-source install/setup.bash
-```
-
 ## Mengapa Workspace Penting?
 1. **Pusat Pengembangan**: Mengorganisasi semua package proyek dalam satu lokasi.
 2. **Proses Build Mudah**: `colcon build` mempermudah proses kompilasi semua package sekaligus.
