@@ -2,7 +2,7 @@
 
 Workspace dalam **ROS 2** adalah seperti folder kerja utama tempat Anda menyimpan, mengorganisasi, dan membangun **package ROS 2** yang Anda kembangkan atau gunakan. Ini adalah lingkungan pengembangan yang penting untuk mengelola semua proyek ROS 2 Anda.
 
-## Struktur Workspace
+## Struktur Workspace 
 Sebuah workspace ROS 2 biasanya memiliki struktur berikut:
 
 ```
