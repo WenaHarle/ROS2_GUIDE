@@ -4,7 +4,7 @@
 
 1. **Menjelajahi Dunia ROS 2**
 2. **Cara Instalasi yang Mudah dan Cepat**
-3. **Bangun Workspace Impianmu**
+3. **Bangun Workspace**
 4. **Kenali dan Buat ROS 2 Package**
 5. **Mulai dengan Membuat Node**
 6. **Eksplorasi Sistem Komunikasi dengan Topic**
