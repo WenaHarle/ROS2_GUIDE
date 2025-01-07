@@ -76,6 +76,8 @@ Buat direktori untuk workspace dengan mengikuti langkah-langkah berikut:
    ```bash
    cd ~/ros2_ws
    ```
+   ![workspace](images/SebelumB.png)
+   File dalam workspace ketika belum di build.
 
 ---
 
@@ -86,6 +88,17 @@ Setelah menyiapkan workspace, gunakan `colcon` untuk membangunnya:
 ```bash   
 colcon build
 ```
+Ketika build berhasil akan muncul notifikasi seperti berikut.
+![Set Locale](images/notifB.png)
+Pada proses build, warna pada notifikasi menandakan status tertentu:
+
+- **Merah**: Menandakan **gagal** dalam proses build.
+- **Kuning**: Menandakan **warning** (peringatan) yang tidak menghentikan proses build.
+- **Hijau**: Menandakan **build berhasil** tanpa masalah.
+
+
+Ketika build sudah berhasil akan muncul beberapa directory tambahan pada workspace anda
+![Set Locale](images/setelahB.png)
 
 ---
 
