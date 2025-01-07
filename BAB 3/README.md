@@ -81,10 +81,9 @@ Buat direktori untuk workspace dengan mengikuti langkah-langkah berikut:
 
 ### 4. Build Workspace
 
-Setelah menyiapkan workspace, gunakan `colcon` untuk membangunnya, pastikan saat kamu mebangun packagenya kamu berada di directory src atau di `~/ros2_ws/src`:
+Setelah menyiapkan workspace, gunakan `colcon` untuk membangunnya:
 
-```bash
-cd ~/ros2_ws/src        
+```bash   
 colcon build
 ```
 
