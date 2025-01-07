@@ -1,6 +1,7 @@
-# Workspace ROS 2
 
-Workspace dalam **ROS 2** adalah seperti folder kerja utama tempat Anda menyimpan, mengorganisasi, dan membangun **package ROS 2** yang Anda kembangkan atau gunakan. Ini adalah lingkungan pengembangan yang penting untuk mengelola semua proyek ROS 2 Anda.
+# Setup Workspace ROS 2 Humble
+
+Workspace dalam **ROS 2** adalah folder kerja utama tempat Anda menyimpan, mengorganisasi, dan membangun **package ROS 2** yang Anda kembangkan atau gunakan. Ini adalah lingkungan pengembangan yang penting untuk mengelola semua proyek ROS 2 Anda.
 
 ## Struktur Workspace 
 Sebuah workspace ROS 2 biasanya memiliki struktur berikut:
@@ -25,50 +26,65 @@ ros2_ws/           # Folder utama workspace
 3. **Interoperabilitas**: Workspace memungkinkan package ROS 2 berinteraksi dengan lancar satu sama lain.
 
 ## Kesimpulan
-Workspace adalah fondasi dari pengembangan ROS 2. Dengan workspace yang terorganisir, Anda dapat membangun, menjalankan, dan mengelola proyek robot Anda dengan lebih efisien. Ikuti langkah-langkah di atas untuk menyiapkan dan mulai menggunakan workspace ROS 2!"
-}
+Workspace adalah fondasi dari pengembangan ROS 2. Dengan workspace yang terorganisir, Anda dapat membangun, menjalankan, dan mengelola proyek robot Anda dengan lebih efisien. Ikuti langkah-langkah di bawah untuk menyiapkan dan mulai menggunakan workspace ROS 2!
 
 ---
 
 ## Prasyarat
 
-1. Pastikan ROS 2 HUMBLE sudah terinstal di sistem Anda.
+1. Pastikan **ROS 2 HUMBLE** sudah terinstal di sistem Anda.
 
 ---
 
 ## Langkah-Langkah Setup Workspace
+
 ### 1. Install colcon
-Colcon membantu kita dalam pengelolaan package di ROS 2, seperti dalam membangun sebuah paket yang diperlukan dalam workspace.
+
+Colcon adalah alat yang digunakan untuk mengelola paket di ROS 2. Instal **colcon** terlebih dahulu:
+
+```bash
+sudo apt update
+sudo apt install python3-colcon-common-extensions
+```
+
+Pastikan instalasi berhasil tanpa error.
+
+---
 
 ### 2. Konfigurasi Lingkungan Pengembangan
 
-Source setup script ROS 2:
+Setelah menginstal ROS 2, source setup script ROS 2 agar Anda bisa menggunakan perintah ROS 2:
 
 ```bash
 source /opt/ros/humble/setup.bash
 ```
+
 ---
 
 ### 3. Buat Workspace
 
-1. Buat direktori untuk workspace:
+Buat direktori untuk workspace dengan mengikuti langkah-langkah berikut:
 
-```bash
-mkdir -p ~/ros2_ws/src
-```
+1. Buat direktori workspace:
+
+   ```bash
+   mkdir -p ~/ros2_ws/src
+   ```
 
 2. Masuk ke direktori workspace:
 
-```bash
-cd ~/ros2_ws
-```
+   ```bash
+   cd ~/ros2_ws
+   ```
 
 ---
+
 ### 4. Build Workspace
 
-Gunakan alat build `colcon` untuk menginisialisasi dan membangun workspace:
+Setelah menyiapkan workspace, gunakan `colcon` untuk membangunnya, pastikan saat kamu mebangun packagenya kamu berada di directory src atau di `~/ros2_ws/src`:
 
 ```bash
+cd ~/ros2_ws/src        
 colcon build
 ```
 
@@ -76,23 +92,24 @@ colcon build
 
 ### 5. Source Workspace
 
-Setelah build selesai, source workspace untuk mengoverlay lingkungan Anda:
+Setelah proses build selesai, source workspace Anda untuk menggunakan hasil build:
 
 ```bash
 source install/setup.bash
 ```
 
 ---
+
 ### 6. Otomatisasi Setup Lingkungan
 
-Untuk secara otomatis men-source script setup ROS 2 dan workspace Anda, tambahkan baris berikut ke file `~/.bashrc`:
+Untuk memastikan bahwa setiap kali Anda membuka terminal baru ROS 2 dan workspace Anda langsung ter-source, jalankan command berikut:
 
 ```bash
-source /opt/ros/<ros2_distro>/setup.bash
-source ~/ros2_ws/install/setup.bash
+echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
 ```
 
-Terapkan perubahan:
+Terapkan perubahan dengan menjalankan perintah berikut:
 
 ```bash
 source ~/.bashrc
@@ -100,21 +117,24 @@ source ~/.bashrc
 
 ---
 
-### 7. Cara Tambahkan Paket ke Workspace
+### 7. Cara Menambahkan Paket ke Workspace (jika kamu ingin mencoba prebuild-package dan tidak harus dicoba)
 
-Cara Untuk menambahkan pre-build paket ROS 2 ke workspace anda:
+Cara menambahkan paket ke workspace :
 
 1. Masuk ke direktori `src`:
+
    ```bash
    cd ~/ros2_ws/src
    ```
 
-2. Clone repositori paket (contoh):
+2. Clone repositori paket yang Anda butuhkan (contoh):
+
    ```bash
    git clone <repository_url>
    ```
 
 3. Kembali ke direktori workspace dan rebuild:
+
    ```bash
    cd ~/ros2_ws
    colcon build
@@ -124,8 +144,8 @@ Cara Untuk menambahkan pre-build paket ROS 2 ke workspace anda:
 
 ## Catatan
 
-- Selalu rebuild workspace menggunakan `colcon build` setelah menambahkan atau memodifikasi paket.
-- Gunakan `source install/setup.bash` pada setiap sesi terminal baru sebelum bekerja dengan workspace.
+- Selalu lakukan build menggunakan `colcon build` setiap kali Anda menambahkan atau mengubah paket.
+- Gunakan `source install/setup.bash` untuk memastikan sesi terminal baru terhubung dengan workspace Anda.
 
 ---
 
