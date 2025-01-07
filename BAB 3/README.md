@@ -77,8 +77,9 @@ Buat direktori untuk workspace dengan mengikuti langkah-langkah berikut:
    cd ~/ros2_ws
    ```
    <p align="center">
-  <img src="images/SebelumB.png" alt="workspace" />
+     <img src="images/SebelumB.png" alt="workspace" />
    </p>
+   
    File dalam workspace ketika belum di build.
 
 ---
