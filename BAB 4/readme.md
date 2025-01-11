@@ -45,12 +45,7 @@ Penjelasan:
 - `--dependencies rclpy`: Menambahkan pustaka Python ROS 2 sebagai dependensi.
 
 ### **3. Buka Paket dengan Visual Studio Code**
-Jika Anda belum memiliki Visual Studio Code, instal dengan perintah berikut:
-```bash
-sudo snap install code --classic
-```
-
-Setelah instalasi, buka direktori `src` workspace Anda dengan VS Code:
+Buka direktori `src` workspace Anda dengan VS Code:
 ```bash
 code .
 ```
