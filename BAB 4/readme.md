@@ -85,6 +85,8 @@ my_robot_controller/
 5. **`__init__.py`**
    - File Python di folder ini merupakan titik awal untuk penulisan node.
 
+> **Catatan**: Struktur direktori tiap paket bisa berbeda tergantung dari keperluan developer, jadi tidak perlu membatasi diri dalam mengubah struktur paketnya
+
 ---
 
 ## **4. Bangun Paket**
