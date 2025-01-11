@@ -30,7 +30,7 @@ Dalam episode ini, kita membuat paket Python untuk mengontrol robot.
 ### **1. Navigasi ke Direktori Source**
 Masuk ke folder `src` di dalam workspace ROS 2 Anda:
 ```bash
-cd <ros2_workspace>/src
+cd ~/ros2_ws/src
 ```
 
 ### **2. Buat Paket Baru**
