@@ -92,7 +92,7 @@ my_robot_controller/
 ## **4. Bangun Paket**
 Masuk ke direktori root workspace ROS 2 Anda dan jalankan:
 ```bash
-cd <ros2_workspace>
+cd ~/ros2_ws/
 colcon build
 ```
 
