@@ -54,6 +54,9 @@ code .
 
 ## **Penjelasan Berkas dalam Paket**
 Setelah membuat paket, Anda akan memiliki struktur direktori seperti ini:
+   <p align="center">
+     <img src="images/package.png" alt="package" />
+   </p>
 
 ```plaintext
 my_robot_controller/
