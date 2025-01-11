@@ -54,10 +54,6 @@ code .
 
 ## **Penjelasan Berkas dalam Paket**
 Setelah membuat paket, Anda akan memiliki struktur direktori seperti ini:
-   <p align="center">
-     <img src="images/package.png" alt="package" />
-   </p>
-
 ```plaintext
 my_robot_controller/
 ├── package.xml
@@ -119,6 +115,9 @@ Setelah berhasil, paket Anda akan terlihat di direktori `install/` workspace:
 ```bash
 ls install/my_robot_controller
 ```
+Direktori yang telah dihasilkan dalam `install/my_robot_controller` meliputi:
+- **`lib`**: Berisi pustaka yang dapat dijalankan terkait node dan dependensi Python lainnya.
+- **`share`**: Berisi file metadata dan sumber daya seperti deskripsi paket.
 
 ---
 
@@ -128,7 +127,7 @@ Sekarang Anda siap untuk menulis node Python di dalam paket. Gunakan Visual Stud
 ---
 
 ## **Langkah Selanjutnya**
-Silakan lanjutkan ke episode berikutnya untuk mempelajari cara menulis node ROS 2 dengan Python.
+Silakan lanjutkan ke BAB berikutnya untuk mempelajari cara menulis node ROS 2 dengan Python.
 
 ---
 
