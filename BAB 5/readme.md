@@ -27,7 +27,8 @@ Node adalah unit utama dalam sistem **Robot Operating System 2 (ROS 2)**. Setiap
 7. **Mengatur Logika Sistem atau Pemrosesan Data**  
    Node dapat diprogram untuk menangani logika pemrosesan, seperti filter data sensor, algoritma kontrol, hingga penerapan _machine learning_.
    
-===
+---
+---
 
 ## Komunikasi Publisher-Subscriber dengan Topic pada ROS
 
@@ -77,7 +78,7 @@ Bayangkan sebuah stasiun radio (*topic*):
 Dalam ROS, analoginya adalah pesan yang diterbitkan ke sebuah *topic* dapat "didengar" oleh banyak *subscriber*, atau beberapa *publisher* dapat mengirim pesan ke *topic* yang sama.
 
 ---
-
+---
 ## **Contoh Ilustrasi**
 ![GIF Description](images/TP.gif)
 
@@ -96,7 +97,7 @@ GIF menunjukkan bagaimana sebuah sistem komunikasi berbasis *topic* bekerja:
 
 > Dengan memahami *topics*, *publishers*, dan *subscribers*, kita dapat merancang sistem robotik yang modular dan efisien, di mana komponen-komponennya dapat saling berkomunikasi secara asinkron tanpa terhubung secara langsung satu sama lain.
 ---
-
+---
 ## Alat yang Dibahas
 
 1. **Alat Command-line:**
@@ -112,7 +113,7 @@ GIF menunjukkan bagaimana sebuah sistem komunikasi berbasis *topic* bekerja:
    - `turtle_teleop_key`: Node teleoperation menggunakan keyboard.
 
 ---
-
+---
 ## Contoh 
 
 ### Menjalankan Node Contoh
