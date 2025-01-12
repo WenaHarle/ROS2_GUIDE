@@ -10,25 +10,25 @@ Node ROS 2 adalah program yang terhubung ke lingkungan ROS 2. Node digunakan unt
 - Membuat antarmuka grafis.
 
 
-# Komunikasi Publisher-Subscriber dengan Topic pada ROS
+## Komunikasi Publisher-Subscriber dengan Topic pada ROS
 
 Dalam ROS (Robot Operating System), komunikasi antar-node dilakukan melalui mekanisme yang disebut *topics*. *Topics* memungkinkan pengiriman dan penerimaan data antar-*nodes* tanpa mereka harus terhubung secara langsung. Berikut adalah penjelasan detail mengenai konsep ini dan elemen-elemen utamanya:
 
 ---
 
-## **Elemen Dasar**
+### **Elemen Dasar**
 
-### **1. Apa itu Publisher?**
+#### **1. Apa itu Publisher?**
 *Publisher* adalah bagian dari *node* (program) yang bertanggung jawab untuk **mengirimkan data atau pesan** ke sistem ROS melalui sebuah *topic*. 
 - Ibarat orang yang berbicara di sebuah saluran radio.
 - **Contoh**: Sebuah *node* sensor pengukur suhu mengirimkan data suhu melalui *topic* bernama `/temperature`.
 
-### **2. Apa itu Subscriber?**
+#### **2. Apa itu Subscriber?**
 *Subscriber* adalah bagian dari *node* yang bertugas untuk **menerima data atau pesan** dari sistem ROS melalui sebuah *topic* yang spesifik.
 - Ibarat orang yang mendengarkan saluran radio tertentu untuk mendapatkan informasi.
 - **Contoh**: Sebuah *node* pengontrol membaca data suhu dari *topic* `/temperature` untuk mengambil keputusan, seperti menyalakan kipas.
 
-### **3. Apa itu Topic?**
+#### **3. Apa itu Topic?**
 *Topic* adalah saluran komunikasi yang digunakan oleh ROS untuk **menghubungkan publisher dengan subscriber**. 
 - Ibarat saluran radio tempat berbagi informasi.
 - *Publisher* mengirimkan pesan ke sebuah *topic*, sedangkan *subscriber* akan menerima pesan dari *topic* tersebut.
@@ -36,7 +36,7 @@ Dalam ROS (Robot Operating System), komunikasi antar-node dilakukan melalui meka
 
 ---
 
-## **Bagaimana Publisher, Subscriber, dan Topic Bekerja Bersama?**
+### **Bagaimana Publisher, Subscriber, dan Topic Bekerja Bersama?**
 
 Komunikasi melalui *topics* tidak hanya bersifat satu ke satu (*point-to-point*), tetapi juga mendukung pola komunikasi berikut:
 
@@ -49,7 +49,7 @@ Komunikasi melalui *topics* tidak hanya bersifat satu ke satu (*point-to-point*)
 3. **Banyak ke Banyak** (*Many-to-Many*):
    - Kombinasi di mana banyak *nodes* berperan sebagai *publishers* dan *subscribers* sekaligus.
 
-### **Contoh Kehidupan Sehari-hari:**
+#### **Contoh Kehidupan Sehari-hari:**
 Bayangkan sebuah stasiun radio (*topic*):
 - **Publisher:** Penyiar radio berbicara di saluran (misalnya, frekuensi 101.1 FM).
 - **Subscriber:** Pendengar radio yang menyetel saluran 101.1 FM untuk mendengarkan.
