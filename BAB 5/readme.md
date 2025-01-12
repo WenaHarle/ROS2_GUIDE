@@ -37,7 +37,6 @@ Dalam ROS (Robot Operating System), komunikasi antar-node dilakukan melalui meka
 ---
 
 ## **Bagaimana Publisher, Subscriber, dan Topic Bekerja Bersama?**
-![GIF Description](images/TP.gif)
 
 Komunikasi melalui *topics* tidak hanya bersifat satu ke satu (*point-to-point*), tetapi juga mendukung pola komunikasi berikut:
 
@@ -60,8 +59,8 @@ Dalam ROS, analoginya adalah pesan yang diterbitkan ke sebuah *topic* dapat "did
 
 ---
 
-## **Penjelasan Animasi pada GIF**
-
+## **Contoh Ilustrasi**
+![GIF Description](images/TP.gif)
 GIF menunjukkan bagaimana sebuah sistem komunikasi berbasis *topic* bekerja:
 
 1. Sebuah *node* yang bertindak sebagai **publisher** mengirimkan pesan melalui *topic* tertentu.
