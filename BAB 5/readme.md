@@ -2,13 +2,32 @@
 
 ## Pengenalan Node ROS 2
 
-### Apa itu Node ROS 2?
-Node ROS 2 adalah program yang terhubung ke lingkungan ROS 2. Node digunakan untuk melakukan berbagai tugas, seperti:
-- Mempublikasikan pesan.
-- Berlangganan pesan.
-- Mengelola perangkat keras atau antarmuka eksternal.
-- Membuat antarmuka grafis.
+Node adalah unit utama dalam sistem **Robot Operating System 2 (ROS 2)**. Setiap node berjalan sebagai program independen yang dapat bekerja secara terpisah maupun bersama dengan node lainnya untuk membentuk suatu sistem yang kompleks. Berikut adalah tugas-tugas utama dari sebuah node dalam ROS 2:
 
+### Tugas Node dalam ROS 2
+
+1. **Mempublikasikan Pesan**  
+   Node dapat mengirimkan data (informasi) ke node lain melalui **topik** tertentu. Proses ini disebut sebagai _publishing_, dan data yang dikirimkan dapat berupa teks, angka, sensor, gambar, dan lain-lain.
+
+2. **Berlangganan Pesan**  
+   Node dapat menerima data dari node lain melalui **topik** yang telah mereka daftarkan. Proses ini disebut sebagai _subscribing_. Berlangganan memungkinkan node untuk berinteraksi atau merespon data dari node lain.
+
+3. **Mengelola Perangkat Keras atau Antarmuka Eksternal**  
+   Node sering digunakan untuk berkomunikasi langsung dengan perangkat keras, seperti sensor, aktuator, atau pengendali. Node bertugas mengambil data dari perangkat keras atau mengirimkan perintah untuk menggerakkan perangkat.
+
+4. **Menyediakan atau Menggunakan Layanan (Services)**  
+   Node dapat menyediakan layanan (_service_), yaitu fungsi yang dapat dipanggil oleh node lain untuk melakukan tugas tertentu. Contohnya adalah perhitungan sederhana atau kontrol perangkat.
+
+5. **Berinteraksi melalui Aksi (Actions)**  
+   Node dapat mengatur atau menjalankan aksi (_action_), yaitu tugas yang lebih kompleks dan memakan waktu. Aksi biasanya digunakan dalam skenario seperti navigasi robot atau manipulasi lengan robotik.
+
+6. **Membuat Antarmuka Grafis**  
+   Node dapat bertugas membangun **Graphical User Interface (GUI)** yang memudahkan pengguna untuk berinteraksi dengan sistem ROS 2, misalnya untuk visualisasi data atau kontrol perangkat keras.
+
+7. **Mengatur Logika Sistem atau Pemrosesan Data**  
+   Node dapat diprogram untuk menangani logika pemrosesan, seperti filter data sensor, algoritma kontrol, hingga penerapan _machine learning_.
+   
+===
 
 ## Komunikasi Publisher-Subscriber dengan Topic pada ROS
 
