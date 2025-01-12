@@ -28,13 +28,10 @@ Node adalah unit utama dalam sistem **Robot Operating System 2 (ROS 2)**. Setiap
    Node dapat diprogram untuk menangani logika pemrosesan, seperti filter data sensor, algoritma kontrol, hingga penerapan _machine learning_.
    
 ---
----
 
 ## Komunikasi Publisher-Subscriber dengan Topic pada ROS
 
 Dalam ROS (Robot Operating System), komunikasi antar-node dilakukan melalui mekanisme yang disebut *topics*. *Topics* memungkinkan pengiriman dan penerimaan data antar-*nodes* tanpa mereka harus terhubung secara langsung. Berikut adalah penjelasan detail mengenai konsep ini dan elemen-elemen utamanya:
-
----
 
 ### **Elemen Dasar**
 
@@ -53,8 +50,6 @@ Dalam ROS (Robot Operating System), komunikasi antar-node dilakukan melalui meka
 - Ibarat saluran radio tempat berbagi informasi.
 - *Publisher* mengirimkan pesan ke sebuah *topic*, sedangkan *subscriber* akan menerima pesan dari *topic* tersebut.
 - Nama *topic* biasanya dalam format string unik seperti `/velocity`, `/camera/image`, atau `/lidar/scan`.
-
----
 
 ### **Bagaimana Publisher, Subscriber, dan Topic Bekerja Bersama?**
 
@@ -78,7 +73,6 @@ Bayangkan sebuah stasiun radio (*topic*):
 Dalam ROS, analoginya adalah pesan yang diterbitkan ke sebuah *topic* dapat "didengar" oleh banyak *subscriber*, atau beberapa *publisher* dapat mengirim pesan ke *topic* yang sama.
 
 ---
----
 ## **Contoh Ilustrasi**
 ![GIF Description](images/TP.gif)
 
@@ -96,7 +90,7 @@ GIF menunjukkan bagaimana sebuah sistem komunikasi berbasis *topic* bekerja:
 - Mekanisme ini memvisualisasikan fleksibilitas komunikasi *topics* dalam mendukung berbagai skenario seperti distribusi data sensor atau penyebaran perintah kontrol. seingga memungkikan dalam melakukan multitasking tnpa menghentikan perintah lain.
 
 > Dengan memahami *topics*, *publishers*, dan *subscribers*, kita dapat merancang sistem robotik yang modular dan efisien, di mana komponen-komponennya dapat saling berkomunikasi secara asinkron tanpa terhubung secara langsung satu sama lain.
----
+
 ---
 ## Alat yang Dibahas
 
@@ -112,7 +106,7 @@ GIF menunjukkan bagaimana sebuah sistem komunikasi berbasis *topic* bekerja:
    - `turtlesim_node`: Simulasi 2D dengan tampilan grafis.
    - `turtle_teleop_key`: Node teleoperation menggunakan keyboard.
 
----
+
 ---
 ## Contoh 
 
