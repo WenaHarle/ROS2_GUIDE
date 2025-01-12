@@ -61,6 +61,7 @@ Dalam ROS, analoginya adalah pesan yang diterbitkan ke sebuah *topic* dapat "did
 
 ## **Contoh Ilustrasi**
 ![GIF Description](images/TP.gif)
+
 GIF menunjukkan bagaimana sebuah sistem komunikasi berbasis *topic* bekerja:
 
 1. Sebuah *node* yang bertindak sebagai **publisher** mengirimkan pesan melalui *topic* tertentu.
@@ -69,17 +70,12 @@ GIF menunjukkan bagaimana sebuah sistem komunikasi berbasis *topic* bekerja:
    - Pesan yang diterbitkan oleh *publisher* dikirimkan melalui *topic*.
    - Semua *subscriber* yang "berlangganan" ke *topic* tersebut menerima pesan secara bersamaan.
 
-### **Pola Komunikasi dalam GIF:**
+### **Pola Komunikasi:**
 - **Satu Publisher, Banyak Subscriber:** 
   - Sebuah *publisher* menerbitkan pesan, yang diterima oleh dua *subscriber*.
-- Mekanisme ini memvisualisasikan fleksibilitas komunikasi *topics* dalam mendukung berbagai skenario seperti distribusi data sensor atau penyebaran perintah kontrol.
+- Mekanisme ini memvisualisasikan fleksibilitas komunikasi *topics* dalam mendukung berbagai skenario seperti distribusi data sensor atau penyebaran perintah kontrol. seingga memungkikan dalam melakukan multitasking tnpa menghentikan perintah lain.
 
----
-
-Dengan memahami *topics*, *publishers*, dan *subscribers*, kita dapat merancang sistem robotik yang modular dan efisien, di mana komponen-komponennya dapat saling berkomunikasi secara asinkron tanpa terhubung secara langsung satu sama lain.
-
-
-
+> Dengan memahami *topics*, *publishers*, dan *subscribers*, kita dapat merancang sistem robotik yang modular dan efisien, di mana komponen-komponennya dapat saling berkomunikasi secara asinkron tanpa terhubung secara langsung satu sama lain.
 ---
 
 ## Alat yang Dibahas
@@ -98,7 +94,7 @@ Dengan memahami *topics*, *publishers*, dan *subscribers*, kita dapat merancang 
 
 ---
 
-## Contoh yang Dibahas di Episode 2
+## Contoh 
 
 ### Menjalankan Node Contoh
 1. **Node Talker**:
