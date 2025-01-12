@@ -1,7 +1,4 @@
 # Kenali dan Buat ROS 2 Package
-
-Untuk selanjutnya ikuti langkah-langkah yang dibahas dalam BAB 4 dari guide ROS 2. Ikuti petunjuk berikut untuk membuat dan mengatur paket ROS 2, serta mempersiapkannya untuk menulis node dalam Python.
-
 ## Prasyarat
 Pastikan Anda memiliki workspace ROS 2 yang sudah dikonfigurasi. Jika belum, lihat episode sebelumnya untuk panduan tentang cara mengatur workspace ROS 2.
 
@@ -54,6 +51,11 @@ code .
 
 ## **Penjelasan Berkas dalam Paket**
 Setelah membuat paket, Anda akan memiliki struktur direktori seperti ini:
+
+   <p align="center">
+     <img src="images/package.png" alt="workspace" />
+   </p>
+
 ```plaintext
 my_robot_controller/
 ├── package.xml
