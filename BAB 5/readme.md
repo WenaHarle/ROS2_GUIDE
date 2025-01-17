@@ -131,6 +131,8 @@ GIF menunjukkan bagaimana sebuah sistem komunikasi berbasis *topic* bekerja:
    <p align="center">
      <img src="images/simulTL.png" alt="workspace" />
    </p>
+
+   Bila kita lihat dari gambar terlihat bahwa node *talker* mengirim topic berupa *chatter* kepada *listener*
    
 ### Contoh TurtleSim
 1. **Jalankan Node TurtleSim:**
