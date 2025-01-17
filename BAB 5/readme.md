@@ -127,8 +127,11 @@ GIF menunjukkan bagaimana sebuah sistem komunikasi berbasis *topic* bekerja:
     - Jalankan `rqt_graph` untuk melihat node dan topik dalam grafik ROS.
     ```bash
     rqt_graph
-    ```
-
+    ``` 
+   <p align="center">
+     <img src="images/simuTL.png" alt="workspace" />
+   </p>
+   
 ### Contoh TurtleSim
 1. **Jalankan Node TurtleSim:**
     ```bash
