@@ -129,7 +129,7 @@ GIF menunjukkan bagaimana sebuah sistem komunikasi berbasis *topic* bekerja:
     rqt_graph
     ``` 
    <p align="center">
-     <img src="images/simuTL.png" alt="workspace" />
+     <img src="images/simulTL.png" alt="workspace" />
    </p>
    
 ### Contoh TurtleSim
