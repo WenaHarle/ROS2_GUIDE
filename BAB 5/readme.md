@@ -145,7 +145,7 @@ GIF menunjukkan bagaimana sebuah sistem komunikasi berbasis *topic* bekerja:
     ```bash
     ros2 run turtlesim turtle_teleop_key
     ```
-    - Gunakan tombol panah pada keyboard untuk menggerakkan kura-kura dalam simulasi.
+    - Gunakan tombol WASD pada keyboard untuk menggerakkan kura-kura dalam simulasi.
 
 3. **Amati Komunikasi:**
     - Visualisasikan interaksi antara teleop dan turtlesim menggunakan `rqt_graph`.
