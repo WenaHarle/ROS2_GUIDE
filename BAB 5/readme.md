@@ -156,11 +156,186 @@ GIF menunjukkan bagaimana sebuah sistem komunikasi berbasis *topic* bekerja:
    
 ---
 
-## Langkah Selanjutnya
-Di tutorial berikutnya, kita akan membahas:
-1. Membuat node ROS 2 kustom Anda sendiri.
-2. Menulis program sederhana untuk publisher dan subscriber dalam Python dan C++.
-3. Memahami konsep topik di ROS 2 secara mendalam.
+# Node Hello World ROS2
+
+Bagian ini akan memberikan langkah-langkah dan penjelasan untuk membuat node ROS2 pertama Anda menggunakan Python. Node ini menunjukkan fungsi dasar ROS2 seperti logging, timer, dan spin untuk menjaga node tetap aktif.
+
+## Prasyarat
+- ROS2 sudah terpasang di sistem Anda (misalnya, ROS2 Humble).
+- Python3.
+- Visual Studio Code (disarankan) dengan ekstensi ROS dan Python terpasang.
+
+---
+
+## Langkah-Langkah : 
+
+### 1. Siapkan Workspace Anda
+Navigasi ke workspace ROS2 Anda:
+```bash
+cd ~/ros2_ws/src
+```
+
+Buat paket ROS2 baru bernama `my_robot_controller`:
+```bash
+ros2 pkg create my_robot_controller --build-type ament_python
+```
+
+Masuk ke dalam paket:
+```bash
+cd my_robot_controller
+```
+
+---
+
+### 2. Membuat File Node Python
+
+#### Buat File Node
+Navigasi ke folder paket:
+```bash
+cd my_robot_controller
+```
+
+Gunakan perintah `touch` untuk membuat file Python baru:
+```bash
+touch my_first_node.py
+```
+
+Buat file tersebut dapat dieksekusi:
+```bash
+chmod +x my_first_node.py
+```
+
+---
+
+### 3. Menulis Kode Node
+
+Buka file `my_first_node.py` di Visual Studio Code:
+```bash
+code .
+```
+
+Edit file `my_first_node.py` dan tambahkan kode berikut:
+
+```python
+#!/usr/bin/env python3
+import rclpy
+from rclpy.node import Node
+
+class MyNode(Node):
+    def __init__(self):
+        super().__init__('first_node')
+        self.get_logger().info('Hello from ROS2')
+        self.create_timer(1.0, self.timer_callback)
+        self.counter_ = 0
+
+    def timer_callback(self):
+        self.get_logger().info(f'Hello {self.counter_}')
+        self.counter_ += 1
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = MyNode()
+    rclpy.spin(node)
+    rclpy.shutdown()
+
+if __name__ == "__main__":
+    main()
+```
+
+---
+
+### 4. Membangun dan Menjalankan Node
+
+#### Perbarui `setup.py`
+
+Tambahkan executable ke bagian `entry_points` di file `setup.py`:
+
+```python
+entry_points={
+    'console_scripts': [
+        'test_node = my_robot_controller.my_first_node:main',
+    ],
+},
+```
+
+#### Bangun Workspace
+Kembali ke root workspace Anda dan bangun:
+```bash
+cd ~/ros2_ws
+colcon build
+```
+
+Source lingkungan:
+```bash
+source install/setup.bash
+```
+
+#### Jalankan Node
+Jalankan node menggunakan CLI ROS2:
+```bash
+ros2 run my_robot_controller test_node
+```
+
+#### Output yang Diharapkan
+Node akan mencetak:
+```
+[INFO] [timestamp] [first_node]: Hello from ROS2
+[INFO] [timestamp] [first_node]: Hello 0
+[INFO] [timestamp] [first_node]: Hello 1
+... (dicetak setiap detik)
+```
+
+---
+
+### 5. Debugging dan Inspeksi
+
+#### Perintah CLI ROS2
+
+- **Daftar node yang berjalan**
+  ```bash
+  ros2 node list
+  ```
+
+- **Informasi node**
+  ```bash
+  ros2 node info first_node
+  ```
+
+- **Visualisasi Graf ROS**
+  Pasang dan jalankan `rqt_graph` untuk memvisualisasikan:
+  ```bash
+  sudo apt install ros-humble-rqt-graph
+  rqt_graph
+  ```
+
+---
+
+### Opsional: Tingkatkan Kecepatan Pengembangan
+
+#### Aktifkan Instalasi Symlink
+Untuk pengembangan Python, aktifkan instalasi symlink untuk menghindari pembangunan ulang setelah setiap perubahan:
+```bash
+colcon build --symlink-install
+```
+
+Ini memungkinkan Anda langsung menjalankan kode yang diperbarui tanpa membangun ulang:
+```bash
+ros2 run my_robot_controller test_node
+```
+
+---
+
+### Tips untuk Penamaan File dan Node
+- **Nama File**: `my_first_node.py`.
+- **Nama Executable**: Didefinisikan di `setup.py` (misalnya, `test_node`).
+- **Nama Node**: Didefinisikan di konstruktor `Node` (misalnya, `first_node`).
+
+Pastikan untuk membedakan nama-nama ini karena memiliki tujuan yang berbeda.
+
+---
+
+## Kesimpulan
+Selamat! Anda telah berhasil membuat dan menjalankan node ROS2 pertama Anda. Pengaturan dasar ini dapat diperluas untuk membangun aplikasi ROS2 yang lebih kompleks. 🎉
 
 ---
 
