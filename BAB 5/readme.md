@@ -184,7 +184,9 @@ Masuk ke dalam paket:
 ```bash
 cd my_robot_controller
 ```
-
+  <p align="center">
+     <img src="images/controller_file.png" alt="workspace" />
+   </p>
 ---
 
 ### 2. Membuat File Node Python
@@ -208,6 +210,10 @@ chmod +x my_first_node.py
 ---
 
 ### 3. Menulis Kode Node
+Buka main directory untuk package:
+```bash
+cd ~/ros2_ws/src/my_robot_controller
+```
 
 Buka file `my_first_node.py` di Visual Studio Code:
 ```bash
@@ -241,6 +247,94 @@ def main(args=None):
 if __name__ == "__main__":
     main()
 ```
+
+---
+
+#### Penjelasan Kode
+
+##### Header
+```python
+#!/usr/bin/env python3
+```
+Shebang untuk menentukan interpreter Python 3 secara eksplisit.
+
+---
+
+##### Import Library
+```python
+import rclpy
+from rclpy.node import Node
+```
+- **`rclpy`**: Library utama untuk ROS 2 di Python.
+- **`Node`**: Kelas dasar yang digunakan untuk membuat node ROS 2.
+
+---
+
+##### Kelas MyNode
+```python
+class MyNode(Node):
+    def __init__(self):
+        super().__init__('first_node')
+        self.get_logger().info('Hello from ROS2')
+        self.create_timer(1.0, self.timer_callback)
+        self.counter_ = 0
+```
+1. **`super().__init__('first_node')`**  
+   - Menginisialisasi node dengan nama `first_node`.
+
+2. **`self.get_logger().info('Hello from ROS2')`**  
+   - Logging untuk memberikan informasi bahwa node berhasil dijalankan.
+
+3. **`self.create_timer(1.0, self.timer_callback)`**  
+   - Membuat timer yang memanggil fungsi `timer_callback` setiap 1 detik.
+
+4. **`self.counter_ = 0`**  
+   - Inisialisasi counter dengan nilai awal 0.
+
+---
+
+##### Fungsi Callback
+```python
+def timer_callback(self):
+    self.get_logger().info(f'Hello {self.counter_}')
+    self.counter_ += 1
+```
+- Fungsi yang dipanggil oleh timer setiap 1 detik.
+- **`self.get_logger().info(f'Hello {self.counter_}')`**  
+  - Menampilkan log dengan nilai `counter_` yang terus meningkat.
+- **`self.counter_ += 1`**  
+  - Meningkatkan nilai `counter_` setiap kali callback dipanggil.
+
+---
+
+##### Fungsi Utama
+```python
+def main(args=None):
+    rclpy.init(args=args)
+    node = MyNode()
+    rclpy.spin(node)
+    rclpy.shutdown()
+```
+1. **`rclpy.init(args=args)`**  
+   - Menginisialisasi komunikasi ROS 2.
+
+2. **`node = MyNode()`**  
+   - Membuat instance dari kelas `MyNode`.
+
+3. **`rclpy.spin(node)`**  
+   - Menjaga node tetap berjalan dan menerima callback.
+
+4. **`rclpy.shutdown()`**  
+   - Menghentikan komunikasi ROS 2 setelah node selesai dieksekusi.
+
+---
+
+##### Eksekusi
+```python
+if __name__ == "__main__":
+    main()
+```
+Memastikan script hanya dijalankan saat dipanggil langsung, bukan diimport.
 
 ---
 
