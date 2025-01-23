@@ -150,6 +150,10 @@ GIF menunjukkan bagaimana sebuah sistem komunikasi berbasis *topic* bekerja:
 3. **Amati Komunikasi:**
     - Visualisasikan interaksi antara teleop dan turtlesim menggunakan `rqt_graph`.
 
+   <p align="center">
+     <img src="images/turtle.png" alt="workspace" />
+   </p>
+   
 ---
 
 ## Langkah Selanjutnya
