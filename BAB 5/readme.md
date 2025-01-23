@@ -175,7 +175,7 @@ Navigasi ke workspace ROS2 Anda:
 cd ~/ros2_ws/src
 ```
 
-Buat paket ROS2 baru bernama `my_robot_controller`:
+Buat paket ROS2 baru bernama `my_robot_controller` jika belum ada:
 ```bash
 ros2 pkg create my_robot_controller --build-type ament_python
 ```
