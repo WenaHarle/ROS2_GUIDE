@@ -247,7 +247,9 @@ def main(args=None):
 if __name__ == "__main__":
     main()
 ```
-
+   <p align="center">
+     <img src="images/VSC.png" alt="workspace" />
+   </p>
 ---
 
 #### Penjelasan Kode
@@ -351,7 +353,10 @@ entry_points={
     ],
 },
 ```
-
+   <p align="center">
+     <img src="images/setup.png" alt="workspace" />
+   </p>
+   
 #### Bangun Workspace
 Kembali ke root workspace Anda dan bangun:
 ```bash
@@ -378,7 +383,10 @@ Node akan mencetak:
 [INFO] [timestamp] [first_node]: Hello 1
 ... (dicetak setiap detik)
 ```
-
+ <p align="center">
+     <img src="images/runNode.png" alt="workspace" />
+   </p>
+   
 ---
 
 ### 5. Debugging dan Inspeksi
