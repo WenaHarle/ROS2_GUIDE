@@ -70,76 +70,107 @@ if __name__ == '__main__':
     main()
 ```
 
-### Penjelasan Baris demi Baris Kode Program
+### Penjelasan Kode
 
-- `#!/usr/bin/env python3`:
-  Shebang untuk menentukan interpreter Python yang digunakan.
+#### Header
+```python
+#!/usr/bin/env python3
+```
+Shebang untuk menentukan interpreter Python 3 secara eksplisit.
 
-- `import rclpy`:
-  Import modul utama ROS 2 untuk Python.
+---
 
-- `from rclpy.node import Node`:
-  Mengimpor kelas dasar untuk membuat node di ROS 2.
+#### Import Library
+```python
+import rclpy
+from rclpy.node import Node
+from geometry_msgs.msg import Twist
+```
+- **`rclpy`**: Library utama untuk ROS 2 di Python.
+- **`Node`**: Kelas dasar yang digunakan untuk membuat node ROS 2.
+- **`Twist`**: Jenis pesan untuk mengendalikan kecepatan linear dan angular TurtleSim.
 
-- `from geometry_msgs.msg import Twist`:
-  Mengimpor jenis pesan `Twist` untuk mengendalikan kecepatan linear dan angular TurtleSim.
+---
 
-- `class DrawCycleNode(Node):`:
-  Mendefinisikan kelas `DrawCycleNode` yang merupakan turunan dari kelas ROS 2 `Node`.
+#### Kelas DrawCycleNode
+```python
+class DrawCycleNode(Node):
+    def __init__(self):
+        super().__init__('draw_cycle')
+        self.get_logger().info('DrawCycleNode has been started.')
 
-- `def __init__(self):`:
-  Konstruktor untuk inisialisasi node.
+        # Create publisher
+        self.cmd_vel_pub = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)
 
-- `super().__init__('draw_cycle')`:
-  Memanggil konstruktor kelas induk untuk membuat node bernama "draw_cycle".
+        # Create timer
+        self.create_timer(0.5, self.send_velocity_command)
+```
+1. **`super().__init__('draw_cycle')`**  
+   Menginisialisasi node dengan nama `draw_cycle`.
 
-- `self.get_logger().info('DrawCycleNode has been started.')`:
-  Menampilkan log informasi bahwa node telah dimulai.
+2. **`self.get_logger().info('DrawCycleNode has been started.')`**  
+   Logging untuk memberikan informasi bahwa node berhasil dijalankan.
 
-- `self.cmd_vel_pub = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)`:
-  Membuat publisher untuk mengirim pesan ke topik `/turtle1/cmd_vel` dengan queue size 10.
+3. **`self.cmd_vel_pub = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)`**  
+   Membuat publisher untuk mengirimkan pesan tipe `Twist` ke topik `/turtle1/cmd_vel` dengan queue size 10.
 
-- `self.create_timer(0.5, self.send_velocity_command)`:
-  Membuat timer yang memanggil fungsi `send_velocity_command` setiap 0.5 detik.
+4. **`self.create_timer(0.5, self.send_velocity_command)`**  
+   Membuat timer yang akan memanggil fungsi `send_velocity_command` setiap 0.5 detik.
 
-- `def send_velocity_command(self):`:
-  Fungsi untuk mengirim perintah kecepatan.
+---
 
-- `msg = Twist()`:
-  Membuat instance pesan tipe `Twist`.
+#### Fungsi send_velocity_command
+```python
+    def send_velocity_command(self):
+        msg = Twist()
+        msg.linear.x = 2.0
+        msg.angular.z = 1.0
+        self.cmd_vel_pub.publish(msg)
 
-- `msg.linear.x = 2.0`:
-  Menetapkan kecepatan linear TurtleSim sebesar 2.0.
+        self.get_logger().info(f'Published message: linear.x = {msg.linear.x}, angular.z = {msg.angular.z}')
+```
+- **`msg = Twist()`**: Membuat objek pesan `Twist`.
+- **`msg.linear.x = 2.0`**: Mengatur kecepatan linear TurtleSim sebesar 2.0 m/s.
+- **`msg.angular.z = 1.0`**: Mengatur kecepatan angular TurtleSim sebesar 1.0 rad/s.
+- **`self.cmd_vel_pub.publish(msg)`**: Menerbitkan pesan ke topik `/turtle1/cmd_vel`.
+- **`self.get_logger().info(...)`**: Logging untuk menampilkan pesan kecepatan yang diterbitkan.
 
-- `msg.angular.z = 1.0`:
-  Menetapkan kecepatan angular TurtleSim sebesar 1.0.
+---
 
-- `self.cmd_vel_pub.publish(msg)`:
-  Menerbitkan pesan ke topik yang ditentukan.
+#### Fungsi Utama
+```python
+def main(args=None):
+    rclpy.init(args=args)
+    node = DrawCycleNode()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+```
+1. **`rclpy.init(args=args)`**  
+   Menginisialisasi sistem ROS 2.
 
-- `self.get_logger().info(f'Published message: linear.x = {msg.linear.x}, angular.z = {msg.angular.z}')`:
-  Menampilkan log dengan informasi pesan yang diterbitkan.
+2. **`node = DrawCycleNode()`**  
+   Membuat instance dari kelas `DrawCycleNode`.
 
-- `def main(args=None):`:
-  Fungsi utama program.
+3. **`rclpy.spin(node)`**  
+   Menjaga node tetap berjalan dan memproses callback.
 
-- `rclpy.init(args=args)`:
-  Menginisialisasi ROS 2.
+4. **`node.destroy_node()`**  
+   Menghapus node setelah selesai.
 
-- `node = DrawCycleNode()`:
-  Membuat instance node `DrawCycleNode`.
+5. **`rclpy.shutdown()`**  
+   Menonaktifkan sistem ROS 2.
 
-- `rclpy.spin(node)`:
-  Menjalankan loop ROS untuk mendengarkan callback atau timer.
+---
 
-- `node.destroy_node()`:
-  Menghapus instance node.
+#### Kondisi Eksekusi
+```python
+if __name__ == '__main__':
+    main()
+```
+Menentukan titik masuk program, memastikan fungsi `main()` hanya dipanggil jika file dijalankan secara langsung.
 
-- `rclpy.shutdown()`:
-  Menonaktifkan sistem ROS 2.
-
-- `if __name__ == '__main__':`:
-  Menentukan titik awal eksekusi program.
+---
 
 ### 2. Tambahkan Dependensi pada `package.xml`
 
