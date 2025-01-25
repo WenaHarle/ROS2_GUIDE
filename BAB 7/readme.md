@@ -31,6 +31,13 @@ touch draw_cycle.py
 chmod +x draw_cycle.py
 ```
 
+Buka file Python dengan VS-CODE:
+
+```bash
+cd ~/ros2_ws/src/my_robot_controller
+code .
+```
+
 Isi file `draw_cycle.py` dengan kode berikut:
 
 ```python
