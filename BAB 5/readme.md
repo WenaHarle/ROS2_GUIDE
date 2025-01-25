@@ -1,4 +1,4 @@
-# Salam Kenal Node
+![image](https://github.com/user-attachments/assets/2696dda1-82af-42bc-9719-4c6b79f9dba7)# Salam Kenal Node
 
 ## Pengenalan Node ROS 2
 
@@ -400,13 +400,13 @@ Node akan mencetak:
 
 - **Informasi node**
   ```bash
-  ros2 node info first_node
+  ros2 node info /first_node
   ```
 
 - **Visualisasi Graf ROS**
   Pasang dan jalankan `rqt_graph` untuk memvisualisasikan:
   ```bash
-  sudo apt install ros-humble-rqt-graph
+  sudo apt install ros-humble-rqt-graph #Jlankan jika belum meingstall
   rqt_graph
   ```
 
@@ -424,6 +424,9 @@ Ini memungkinkan Anda langsung menjalankan kode yang diperbarui tanpa membangun 
 ```bash
 ros2 run my_robot_controller test_node
 ```
+ <p align="center">
+     <img src="images/debugN.png" alt="workspace" />
+   </p>
 
 ---
 
@@ -442,11 +445,8 @@ Selamat! Anda telah berhasil membuat dan menjalankan node ROS2 pertama Anda. Pen
 ---
 
 ## Sumber Tambahan
-Jika Anda menikmati episode ini, Anda mungkin tertarik dengan kursus lengkap **ROS 2 untuk Pemula**. Kursus ini mencakup lebih dari 10 jam konten yang akan membantu Anda membangun aplikasi ROS 2 secara lengkap. Lihat tautannya di deskripsi video!
 
-### Tetap Terhubung
-- **Playlist:** [Seri Playlist](#)  
-- **Episode Berikutnya:** [Buat Node ROS 2 Anda Sendiri](#)  
+
 
 Terima kasih telah mengikuti tutorial ini. Sampai jumpa di tutorial berikutnya!
 
