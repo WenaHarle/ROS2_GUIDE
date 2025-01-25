@@ -188,7 +188,10 @@ Edit `package.xml` untuk menambahkan dependensi:
 <depend>geometry_msgs</depend>
 <depend>turtlesim</depend>
 ```
-
+   <p align="center">
+     <img src="images/depend.png" alt="workspace" />
+   </p>
+   
 ### 3. Tambahkan Node di `setup.py`
 
 Edit `setup.py` untuk menambahkan script:
@@ -200,7 +203,10 @@ entry_points={
     ],
 },
 ```
-
+   <p align="center">
+     <img src="images/setupC.png" alt="workspace" />
+   </p>
+   
 ### 4. Build Workspace
 
 Kembali ke root workspace, build project, dan gunakan opsi `symlink`:
@@ -252,7 +258,10 @@ ros2 topic echo /turtle1/cmd_vel
 ---
 
 ## Hasil
-
+   <p align="center">
+     <img src="images/hasilCircle.png" alt="workspace" />
+   </p>
+   
 Setelah menjalankan `draw_cycle`, TurtleSim akan menggambar lingkaran secara otomatis.
 
 ---
