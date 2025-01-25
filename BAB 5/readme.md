@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/2696dda1-82af-42bc-9719-4c6b79f9dba7)# Salam Kenal Node
+# Salam Kenal Node
 
 ## Pengenalan Node ROS 2
 
