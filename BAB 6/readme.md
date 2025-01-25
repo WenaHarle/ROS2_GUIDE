@@ -102,7 +102,3 @@ Pesan yang dikirim memiliki tipe `geometry_msgs/msg/Twist` dengan data:
 
 Topik memungkinkan komunikasi anonim antar node, di mana node dapat mempublikasikan dan/atau berlangganan tanpa mengetahui detail node lainnya. Dengan memahami konsep ini, Anda dapat membangun aplikasi ROS 2 yang kompleks dan terhubung.
 
-Untuk belajar lebih lanjut, pertimbangkan kursus ROS 2 untuk pemula yang menyediakan pembelajaran mendalam selama lebih dari 10 jam.
-
-Terima kasih telah mengikuti tutorial ini! 😊
-
