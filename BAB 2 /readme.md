@@ -1,4 +1,4 @@
-# Installasi ROS 2 Humble di Ubuntu
+# Installasi ROS 2 Humble di Ubuntu (Windows sama Mac gak di ajak)
 
 Panduan ini menjelaskan langkah-langkah untuk menginstal ROS 2 Humble Hawksbill di Ubuntu dengan menggunakan paket debian (Ubuntu 22.04 direkomendasikan).
 
