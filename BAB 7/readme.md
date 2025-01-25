@@ -34,7 +34,7 @@ chmod +x draw_cycle.py
 Buka file Python dengan VS-CODE:
 
 ```bash
-cd ~/ros2_ws/src/my_robot_controller
+cd ~/ros2_ws/src/my_robot_controller/my_robot_controller
 code .
 ```
 
