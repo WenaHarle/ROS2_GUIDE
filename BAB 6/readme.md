@@ -1,6 +1,6 @@
 # Mengintip Dalaman Topic
 
-Mungkin pada bab sebelumnya sudah sedikit dijelaskan mengenai topic pada Node di Bab kali ini akan dijelaskan lebih mendalam mengenai topic ini tersendiri.
+Mungkin pada bab sebelumnya sudah cukup dijelaskan mengenai topic pada Node di Bab kali ini akan dijelaskan tambahan mengenai topic ini tersendiri.
 
 ## Prasyarat
 - Anda memahami dasar-dasar node dalam ROS 2.
