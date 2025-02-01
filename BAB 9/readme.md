@@ -1,30 +1,30 @@
-# ROS 2: Service Client dalam Python 
+# Panduan Lengkap ROS 2 Service Client dengan Python
 
-## 1. Pendahuluan
+## Apa itu ROS 2 Service?
 
-BAB ini akan berfokus pada penggunaan **Service Client** dalam Python. Kita akan mengimplementasikan client untuk mengubah warna garis yang ditinggalkan oleh TurtleSim berdasarkan posisinya di layar.
+**Service** dalam ROS 2 adalah mekanisme komunikasi yang memungkinkan interaksi **client-server**. Tidak seperti **Topics**, yang memungkinkan komunikasi **one-way (satu arah)**, Service memungkinkan komunikasi **dua arah** dengan format **request-response**.
 
-## 2. Konsep Dasar ROS 2 Services
+**Ciri-ciri ROS 2 Services:**
 
-### 2.1 Mengapa Menggunakan Services?
-Di ROS 2, komunikasi antar-node dapat dilakukan melalui **Topics** atau **Services**. Namun, ada perbedaan mendasar antara keduanya:
+- **Client** mengirim permintaan (**request**) ke **Server**.
+- **Server** memproses permintaan dan mengembalikan jawaban (**response**).
+- **Client harus menunggu hingga Server mengirimkan response**.
 
-| Fitur | Topics | Services |
-|--------|--------|----------|
-| Model komunikasi | Publisher-Subscriber | Client-Server |
-| Jenis komunikasi | Streaming data secara terus-menerus | Request-response satu kali |
-| Contoh penggunaan | Sensor mengirim data ke beberapa node | Mengubah parameter robot, meminta hasil komputasi |
+**Perbandingan Service dengan Topics dan Actions:**
 
-Topics digunakan untuk **mengirimkan data secara terus-menerus**, sementara Services digunakan untuk **permintaan satu kali dan mendapatkan respons langsung**.
+| Fitur             | Topics                         | Services                                 | Actions                                |
+| ----------------- | ------------------------------ | ---------------------------------------- | -------------------------------------- |
+| Pola Komunikasi   | Publish-Subscribe              | Request-Response                         | Goal-Feedback-Result                   |
+| Jumlah Pengirim   | Banyak Publisher               | 1 Client                                 | 1 Client                               |
+| Jumlah Penerima   | Banyak Subscriber              | 1 Server                                 | 1 Server                               |
+| Waktu Eksekusi    | Real-time, terus-menerus       | Hanya saat diperlukan                    | Bisa berjalan lama dengan feedback     |
+| Contoh Penggunaan | Data sensor, kontrol kecepatan | Operasi matematis, perubahan konfigurasi | Pergerakan robot dengan durasi panjang |
 
-### 2.2 Cara Kerja Service Client
-Sebuah **service server** akan menyediakan layanan tertentu, sedangkan **service client** akan mengirimkan permintaan dan menunggu respons dari server. Struktur data dalam service memiliki dua bagian:
-1. **Request**: Data yang dikirim oleh client ke server.
-2. **Response**: Data yang dikembalikan oleh server ke client.
+---
 
-## 3. Implementasi Service Client dengan Python
+## Implementasi Service Client dengan Python
 
-### 3.1 Menjalankan TurtleSim dan Mengecek Service yang Tersedia
+### Menjalankan TurtleSim dan Mengecek Service yang Tersedia
 
 Sebelum membuat client, kita harus menjalankan **TurtleSim** terlebih dahulu:
 ```bash
@@ -65,90 +65,283 @@ int64 off
 ```
 Bagian atas adalah **request**, sedangkan bagian setelah "---" adalah **response** (dalam kasus ini kosong karena tidak ada data yang dikembalikan).
 
-### 3.2 Membuat Service Client di Python
+## Studi Kasus: Mengubah Warna Pen pada TurtleSim
 
-Buka direktori workspace Anda dan buat file baru `turtle_pen_client.py` dalam package yang sesuai:
+### Tujuan
+
+Kita akan mengubah warna garis yang digambar oleh **TurtleSim**, tergantung pada posisinya:
+
+- **Jika kura-kura berada di sisi kanan layar (x > 5.5), warna merah.**
+- **Jika kura-kura berada di sisi kiri layar (x <= 5.5), warna hijau.**
+
+### Service yang Digunakan
+
+ROS 2 menyediakan Service bawaan **`/turtle1/set_pen`** dari **TurtleSim**, dengan tipe **`turtlesim/srv/SetPen`**. Service ini menerima permintaan untuk mengubah warna dan ketebalan jalur yang digambar oleh TurtleSim.
+
+Struktur **Request-Response** untuk Service ini:
+
+```
+int r  # Red (0-255)
+int g  # Green (0-255)
+int b  # Blue (0-255)
+int width  # Ketebalan garis
+int off  # 1 = Matikan pen, 0 = Aktifkan pen
+---
+(empty response)
+```
+
+---
+
+## Implementasi Service Client dalam Python
+
+### Persiapan Paket
+
+Pindah ke direktori package:
+
+```bash
+cd ~/ros2_ws/src/my_robot_controller/my_robot_controller
+```
+
+Buat file `turtle_pen.py`:
+
+```bash
+touch turtle_pen.py
+chmod +x turtle_pen.py
+```
+
+Buka file Python dengan VS-CODE:
+
+```bash
+cd ~/ros2_ws/src/my_robot_controller
+code .
+```
+
+Tambahkan dependensi ke `package.xml`:
+
+```xml
+<depend>rclpy</depend>
+<depend>turtlesim</depend>
+```
+
+---
+
+### Kode Lengkap untuk Service Client :
+
+Isi file `turtle_pen.py` :
 
 ```python
 import rclpy
 from rclpy.node import Node
 from turtlesim.srv import SetPen
+from turtlesim.msg import Pose
 from functools import partial
 
-class TurtlePenClient(Node):
+class TurtlePen(Node):
     def __init__(self):
-        super().__init__('turtle_pen_client')
+        super().__init__('turtle_pen')
+        self.pose_subscriber = self.create_subscription(Pose, '/turtle1/pose', self.pose_callback, 10)
+        self.previous_x = 0.0
 
-    def call_setpen_service(self, r, g, b, width, off):
+    def pose_callback(self, msg):
+        # Mengecek apakah kura-kura berpindah dari sisi kiri ke kanan atau sebaliknya
+        if (msg.x > 5.5 and self.previous_x <= 5.5) or (msg.x <= 5.5 and self.previous_x > 5.5):
+            color = (255, 0, 0) if msg.x > 5.5 else (0, 255, 0)
+            self.call_set_pen_service(*color, width=3, off=0)
+        self.previous_x = msg.x
+
+    def call_set_pen_service(self, r, g, b, width, off):
+        # Membuat klien untuk mengakses service /turtle1/set_pen
         client = self.create_client(SetPen, '/turtle1/set_pen')
         while not client.wait_for_service(timeout_sec=1.0):
-            self.get_logger().warn('Menunggu service tersedia...')
+            self.get_logger().warn('Waiting for service /turtle1/set_pen...')
         
+        # Membuat request untuk mengubah warna dan ketebalan pen
         request = SetPen.Request()
-        request.r = r
-        request.g = g
-        request.b = b
-        request.width = width
-        request.off = off
+        request.r, request.g, request.b, request.width, request.off = r, g, b, width, off
         
+        # Mengirim permintaan ke service secara asinkron
         future = client.call_async(request)
-        future.add_done_callback(partial(self.callback_response))
+        future.add_done_callback(partial(self.callback_set_pen))
 
-    def callback_response(self, future):
+    def callback_set_pen(self, future):
         try:
             response = future.result()
-            self.get_logger().info('Service dipanggil dengan sukses!')
+            self.get_logger().info('Pen color changed successfully!')
         except Exception as e:
-            self.get_logger().error(f'Service call gagal: {e}')
+            self.get_logger().error(f'Service call failed: {e}')
+
+# Fungsi utama untuk menjalankan node
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = TurtlePen()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
 
 if __name__ == '__main__':
-    rclpy.init()
-    node = TurtlePenClient()
-    node.call_setpen_service(255, 0, 0, 3, 0)  # Mengubah warna pen menjadi merah
-    rclpy.spin(node)
-    rclpy.shutdown()
+    main()
 ```
 
-Simpan file ini, lalu jalankan dengan perintah berikut:
-```bash
-ros2 run my_package turtle_pen_client.py
-```
-Jika berhasil, warna pen akan berubah sesuai dengan parameter yang diberikan.
+### Penjelasan Kode
 
-## 4. Implementasi dalam Kontrol Otomatis
-
-### 4.1 Mengubah Warna Pen Berdasarkan Posisi
-Tambahkan kode berikut ke dalam **callback posisi** untuk mendeteksi perubahan posisi TurtleSim:
-
+#### Header
 ```python
-def pose_callback(self, msg):
-    if msg.x > 5.5:
-        self.call_setpen_service(255, 0, 0, 3, 0)  # Merah
-    else:
-        self.call_setpen_service(0, 255, 0, 3, 0)  # Hijau
+#!/usr/bin/env python3
 ```
-
-Dengan menambahkan kondisi ini, TurtleSim akan mengganti warna garis berdasarkan posisinya di layar.
-
-## 5. Perbandingan Service, Topics, dan Actions
-
-Selain **Services** dan **Topics**, ROS 2 juga memiliki **Actions**, yang memungkinkan eksekusi proses yang lebih panjang dan dapat diperbarui selama eksekusi berlangsung.
-
-| Komunikasi | Model | Gunakan Jika |
-|------------|--------|--------------|
-| Topics | Publisher-Subscriber | Mengirim data secara terus-menerus (misalnya sensor) |
-| Services | Client-Server | Permintaan satu kali dengan respons cepat (misalnya mengubah parameter) |
-| Actions | Client-Server dengan feedback | Proses yang berjalan lama dan memerlukan update (misalnya pergerakan robot) |
-
-## 6. Kesimpulan
-
-- **Services** digunakan untuk komunikasi **request-response** yang tidak kontinu.
-- Service Client memungkinkan kita **mengirimkan permintaan dan menerima jawaban**.
-- Services cocok untuk tugas yang memerlukan pemrosesan data secara **satu kali**, berbeda dengan **topics** yang berjalan terus-menerus.
-- Dalam implementasi ini, kita menggunakan **Service Client untuk mengubah warna pen TurtleSim berdasarkan posisi**.
-
-Dengan memahami perbedaan antara Topics, Services, dan Actions, kita bisa memilih model komunikasi yang paling sesuai untuk aplikasi ROS 2 yang sedang dikembangkan.
+Shebang yang menentukan interpreter Python 3 secara eksplisit.
 
 ---
-Semoga panduan ini membantu Anda memahami ROS 2 Services lebih dalam! 🚀
+
+#### Import Library
+```python
+import rclpy
+from rclpy.node import Node
+from turtlesim.srv import SetPen
+from turtlesim.msg import Pose
+from functools import partial
+```
+- **`rclpy`**: Library utama untuk mengembangkan aplikasi ROS 2 menggunakan Python.
+- **`Node`**: Kelas dasar dalam ROS 2 untuk membuat node.
+- **`SetPen`**: Tipe service yang digunakan untuk mengubah warna dan ketebalan garis yang digambar oleh kura-kura.
+- **`Pose`**: Tipe pesan yang digunakan untuk mendapatkan informasi posisi dan orientasi kura-kura di Turtlesim.
+- **`partial`**: Fungsi dari `functools` untuk mengikat beberapa argumen ke dalam callback.
+
+---
+
+#### Kelas `TurtlePen`
+```python
+class TurtlePen(Node):
+    def __init__(self):
+        super().__init__('turtle_pen')
+        self.pose_subscriber = self.create_subscription(Pose, '/turtle1/pose', self.pose_callback, 10)
+        self.previous_x = 0.0
+```
+1. **`super().__init__('turtle_pen')`**  
+   - Menginisialisasi node dengan nama `turtle_pen`.
+
+2. **`self.pose_subscriber = self.create_subscription(Pose, '/turtle1/pose', self.pose_callback, 10)`**  
+   - Membuat subscriber untuk menerima data posisi kura-kura dari topik `/turtle1/pose`.  
+   - Ketika ada pesan baru, fungsi `pose_callback` akan dipanggil.
+
+3. **`self.previous_x = 0.0`**  
+   - Menyimpan posisi x sebelumnya dari kura-kura untuk mendeteksi perubahan posisi.
+
+---
+
+#### Callback `pose_callback`
+```python
+def pose_callback(self, msg):
+    if (msg.x > 5.5 and self.previous_x <= 5.5) or (msg.x <= 5.5 and self.previous_x > 5.5):
+        color = (255, 0, 0) if msg.x > 5.5 else (0, 255, 0)
+        self.call_set_pen_service(*color, width=3, off=0)
+    self.previous_x = msg.x
+```
+1. **`if (msg.x > 5.5 and self.previous_x <= 5.5) or (msg.x <= 5.5 and self.previous_x > 5.5):`**  
+   - Mengecek apakah kura-kura berpindah dari sisi kiri ke kanan (x > 5.5) atau sebaliknya.  
+   - Jika iya, maka warna pena akan berubah.
+
+2. **`color = (255, 0, 0) if msg.x > 5.5 else (0, 255, 0)`**  
+   - Jika kura-kura berada di sebelah kanan (x > 5.5), warna pena diubah menjadi merah `(255, 0, 0)`.  
+   - Jika di sebelah kiri, warna pena diubah menjadi hijau `(0, 255, 0)`.
+
+3. **`self.call_set_pen_service(*color, width=3, off=0)`**  
+   - Memanggil fungsi `call_set_pen_service` untuk mengubah warna dan ketebalan pena.
+
+4. **`self.previous_x = msg.x`**  
+   - Memperbarui posisi x sebelumnya agar dapat mendeteksi perpindahan pada iterasi berikutnya.
+
+---
+
+#### Fungsi `call_set_pen_service`
+```python
+def call_set_pen_service(self, r, g, b, width, off):
+    client = self.create_client(SetPen, '/turtle1/set_pen')
+    while not client.wait_for_service(timeout_sec=1.0):
+        self.get_logger().warn('Waiting for service /turtle1/set_pen...')
+    
+    request = SetPen.Request()
+    request.r, request.g, request.b, request.width, request.off = r, g, b, width, off
+    
+    future = client.call_async(request)
+    future.add_done_callback(partial(self.callback_set_pen))
+```
+1. **`client = self.create_client(SetPen, '/turtle1/set_pen')`**  
+   - Membuat klien untuk mengakses service `/turtle1/set_pen`.
+
+2. **`while not client.wait_for_service(timeout_sec=1.0):`**  
+   - Menunggu hingga service `/turtle1/set_pen` tersedia.
+
+3. **`request = SetPen.Request()`**  
+   - Membuat request untuk mengubah warna dan ketebalan pena.
+
+4. **`request.r, request.g, request.b, request.width, request.off = r, g, b, width, off`**  
+   - Menetapkan parameter request berdasarkan warna dan ketebalan pena.
+
+5. **`future = client.call_async(request)`**  
+   - Mengirim permintaan ke service secara asinkron.
+
+6. **`future.add_done_callback(partial(self.callback_set_pen))`**  
+   - Menambahkan callback untuk menangani respons dari service.
+
+---
+
+#### Callback `callback_set_pen`
+```python
+def callback_set_pen(self, future):
+    try:
+        response = future.result()
+        self.get_logger().info('Pen color changed successfully!')
+    except Exception as e:
+        self.get_logger().error(f'Service call failed: {e}')
+```
+1. **`response = future.result()`**  
+   - Mengambil hasil dari permintaan service.
+
+2. **`self.get_logger().info('Pen color changed successfully!')`**  
+   - Menampilkan pesan bahwa warna pena berhasil diubah.
+
+3. **`except Exception as e:`**  
+   - Jika terjadi kesalahan, menampilkan error pada log.
+
+---
+
+#### Fungsi Utama
+```python
+def main(args=None):
+    rclpy.init(args=args)
+    node = TurtleController()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+```
+1. **`rclpy.init(args=args)`**  
+   - Menginisialisasi sistem ROS 2.
+
+2. **`node = TurtlePen()`**  
+   - Membuat instance dari kelas `TurtlePen`.
+
+3. **`rclpy.spin(node)`**  
+   - Menjalankan node agar tetap aktif.
+
+4. **`node.destroy_node()`**  
+   - Menghapus node setelah selesai digunakan.
+
+5. **`rclpy.shutdown()`**  
+   - Menonaktifkan sistem ROS 2.
+
+---
+
+#### Kondisi Eksekusi
+```python
+if __name__ == '__main__':
+    main()
+```
+- Memastikan bahwa kode hanya dieksekusi jika file dijalankan langsung, bukan diimpor sebagai modul.
+
+## 5. README.md
+
+Tambahkan README.md berisi panduan instalasi, penggunaan, dan contoh eksekusi kode.
+
+Dengan memahami struktur kode ini, Anda dapat dengan mudah mengembangkan aplikasi ROS 2 lainnya! 🚀
 
