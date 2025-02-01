@@ -76,19 +76,44 @@ Kita akan mengubah warna garis yang digambar oleh **TurtleSim**, tergantung pada
 
 ### Service yang Digunakan
 
-ROS 2 menyediakan Service bawaan **`/turtle1/set_pen`** dari **TurtleSim**, dengan tipe **`turtlesim/srv/SetPen`**. Service ini menerima permintaan untuk mengubah warna dan ketebalan jalur yang digambar oleh TurtleSim.
-
-Struktur **Request-Response** untuk Service ini:
-
+Sebelum membuat client, kita harus menjalankan **TurtleSim** terlebih dahulu:
+```bash
+ros2 run turtlesim turtlesim_node
 ```
-int r  # Red (0-255)
-int g  # Green (0-255)
-int b  # Blue (0-255)
-int width  # Ketebalan garis
-int off  # 1 = Matikan pen, 0 = Aktifkan pen
+
+Kemudian, kita dapat melihat daftar service yang tersedia dengan perintah:
+```bash
+ros2 service list
+```
+
+Salah satu service yang tersedia adalah:
+```
+/turtle1/set_pen
+```
+
+Kita bisa melihat tipe service ini dengan:
+```bash
+ros2 service type /turtle1/set_pen
+```
+Output:
+```
+turtlesim/srv/SetPen
+```
+
+Untuk melihat detail dari request dan response, gunakan:
+```bash
+ros2 interface show turtlesim/srv/SetPen
+```
+Output:
+```
+int64 r
+int64 g
+int64 b
+int64 width
+int64 off
 ---
-(empty response)
 ```
+Bagian atas adalah **request**, sedangkan bagian setelah "---" adalah **response** (dalam kasus ini kosong karena tidak ada data yang dikembalikan).
 
 ---
 
