@@ -514,6 +514,10 @@ rqt_graph
 ---
 
 ## Hasil
+   
+   <p align="center">
+     <img src="images/subcriber_turtle.png" alt="workspace" />
+   </p>
 
 Setelah menjalankan `pose_subscriber`, Anda akan menerima data posisi dan orientasi TurtleSim secara real-time.
 
