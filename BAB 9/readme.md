@@ -332,12 +332,94 @@ def main(args=None):
 
 ---
 
+
 #### Kondisi Eksekusi
 ```python
 if __name__ == '__main__':
     main()
 ```
 - Memastikan bahwa kode hanya dieksekusi jika file dijalankan langsung, bukan diimpor sebagai modul.
+
+### Tambahkan Dependensi pada `package.xml`
+
+Edit `package.xml` untuk menambahkan dependensi:
+
+```xml
+<depend>rclpy</depend>
+<depend>turtlesim</depend>
+```
+
+---
+
+### Tambahkan Node di `setup.py`
+
+Edit `setup.py` untuk menambahkan script:
+
+```python
+entry_points={
+    'console_scripts': [
+        'pose_subscriber = my_robot_controller.pose_subscriber:main',
+    ],
+},
+```
+
+---
+
+### Build Workspace
+
+Kembali ke root workspace, build project, dan gunakan opsi `symlink`:
+
+```bash
+cd ~/ros2_ws
+colcon build --symlink-install
+```
+
+---
+
+### Menjalankan Node Service Client
+
+Setelah kita selesai membuat dan mengatur semua hal yang diperlukan, saatnya menjalankan node tersebut!
+
+1. **Pastikan TurtleSim sedang berjalan:**
+
+    Jika belum menjalankan, buka terminal baru dan jalankan:
+
+    ```bash
+    ros2 run turtlesim turtlesim_node
+    ```
+
+2. **Jalankan node Python yang kita buat:**
+
+    Kembali ke terminal sebelumnya, jalankan node dengan perintah berikut:
+
+    ```bash
+    source ~/ros2_ws/install/setup.bash
+    ros2 run my_robot_controller turtle_pen
+    ```
+
+3. **Uji Node:**
+
+    - Cobalah menggerakkan kura-kura dengan mengirim command melalui keyboard atau dengan teleop:
+    
+        ```bash
+        ros2 run turtlesim turtle_teleop_key
+        ```
+    
+    - Perhatikan bagaimana warna pen berubah saat kura-kura bergerak dari kiri ke kanan atau sebaliknya!
+
+4. **Log Output:**
+
+    Jika node berhasil berjalan, kamu akan melihat log seperti berikut di terminal:
+
+    ```
+    [INFO] [<timestamp>] [turtle_pen]: Pen color changed successfully!
+    ```
+
+    Jika ada masalah, misalnya service tidak ditemukan, log error akan muncul:
+
+    ```
+    [ERROR] [<timestamp>] [turtle_pen]: Service call failed: <error_message>
+
 
 ## 5. README.md
 
