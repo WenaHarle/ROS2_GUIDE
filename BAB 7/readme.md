@@ -479,6 +479,10 @@ Anda akan melihat log posisi dan orientasi TurtleSim di terminal:
 [INFO] [pose_subscriber]: Received Pose: x = 5.544445, y = 5.544445, theta = 0.0
 ```
 
+Jalankan node `draw_cycle` untuk mengetest nodenya 
+```bash
+ros2 run my_robot_controller draw_cycle
+```
 ---
 
 ## Debugging dan Verifikasi
@@ -499,6 +503,12 @@ ros2 topic info /turtle1/pose
 
 ```bash
 ros2 topic echo /turtle1/pose
+```
+
+### Graph
+
+```bash
+rqt_graph
 ```
 
 ---
