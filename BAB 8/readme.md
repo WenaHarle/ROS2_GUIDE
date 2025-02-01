@@ -31,7 +31,7 @@ Dalam tutorial ini, kita akan membuat **sistem kontrol tertutup** (closed-loop) 
 Pindah ke direktori package:
 
 ```bash
-cd ~/ros2_ws/src/my_robot_controller
+cd ~/ros2_ws/src/my_robot_controller/my_robot_controller
 ```
 
 Buat file Python:
@@ -39,6 +39,12 @@ Buat file Python:
 ```bash
 touch turtle_controller.py
 chmod +x turtle_controller.py
+```
+
+Buka file `turtle_controller.py` dengan VSCode:
+```bash
+cd ~/ros2_ws/src/my_robot_controller
+code .
 ```
 
 Isi file `turtle_controller.py` dengan kode berikut:
