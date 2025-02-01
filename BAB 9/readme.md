@@ -24,49 +24,6 @@
 
 ## Implementasi Service Client dengan Python
 
-### Menjalankan TurtleSim dan Mengecek Service yang Tersedia
-
-Sebelum membuat client, kita harus menjalankan **TurtleSim** terlebih dahulu:
-```bash
-ros2 run turtlesim turtlesim_node
-```
-
-Kemudian, kita dapat melihat daftar service yang tersedia dengan perintah:
-```bash
-ros2 service list
-```
-
-Salah satu service yang tersedia adalah:
-```
-/turtle1/set_pen
-```
-
-Kita bisa melihat tipe service ini dengan:
-```bash
-ros2 service type /turtle1/set_pen
-```
-Output:
-```
-turtlesim/srv/SetPen
-```
-
-Untuk melihat detail dari request dan response, gunakan:
-```bash
-ros2 interface show turtlesim/srv/SetPen
-```
-Output:
-```
-int64 r
-int64 g
-int64 b
-int64 width
-int64 off
----
-```
-Bagian atas adalah **request**, sedangkan bagian setelah "---" adalah **response** (dalam kasus ini kosong karena tidak ada data yang dikembalikan).
-
-## Studi Kasus: Mengubah Warna Pen pada TurtleSim
-
 ### Tujuan
 
 Kita akan mengubah warna garis yang digambar oleh **TurtleSim**, tergantung pada posisinya:
