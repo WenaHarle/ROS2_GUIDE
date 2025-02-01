@@ -21,7 +21,7 @@ Pastikan Anda telah menginstal:
 Pindah ke direktori package:
 
 ```bash
-cd ~/ros2_ws/src/my_robot_controller
+cd ~/ros2_ws/src/my_robot_controller/my_robot_controller
 ```
 
 Buat file Python:
@@ -34,7 +34,7 @@ chmod +x draw_cycle.py
 Buka file Python dengan VS-CODE:
 
 ```bash
-cd ~/ros2_ws/src/my_robot_controller/my_robot_controller
+cd ~/ros2_ws/src/my_robot_controller
 code .
 ```
 
@@ -288,7 +288,7 @@ Pastikan Anda telah menginstal:
 Pindah ke direktori package:
 
 ```bash
-cd ~/ros2_ws/src/my_robot_controller
+cd ~/ros2_ws/src/my_robot_controller/my_robot_controller
 ```
 
 Buat file Python:
@@ -301,7 +301,7 @@ chmod +x pose_subscriber.py
 Buka VSCode:
 
 ```bash
-cd ~/ros2_ws/src/my_robot_controller/my_robot_controller
+cd ~/ros2_ws/src/my_robot_controller
 code .
 ```
 
