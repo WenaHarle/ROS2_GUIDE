@@ -358,7 +358,7 @@ Edit `setup.py` untuk menambahkan script:
 ```python
 entry_points={
     'console_scripts': [
-        'pose_subscriber = my_robot_controller.pose_subscriber:main',
+        'turtle_pen = my_robot_controller.pose_subscriber:main',
     ],
 },
 ```
