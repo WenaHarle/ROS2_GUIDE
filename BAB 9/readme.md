@@ -140,14 +140,6 @@ Buka file Python dengan VS-CODE:
 cd ~/ros2_ws/src/my_robot_controller
 code .
 ```
-
-Tambahkan dependensi ke `package.xml`:
-
-```xml
-<depend>rclpy</depend>
-<depend>turtlesim</depend>
-```
-
 ---
 
 ### Kode Lengkap untuk Service Client :
