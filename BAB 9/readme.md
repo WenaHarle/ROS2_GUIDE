@@ -61,8 +61,10 @@ Untuk melihat detail dari request dan response, gunakan:
 ```bash
 ros2 interface show turtlesim/srv/SetPen
 ```
-Output:
-```
+Output dari perintah `ros2 interface show turtlesim/srv/SetPen` menampilkan definisi dari request dan response pada service `SetPen` yang tersedia di **TurtleSim**. Mari kita bahas detailnya:
+
+### **Struktur Request dan Response**
+```plaintext
 int64 r
 int64 g
 int64 b
@@ -70,6 +72,21 @@ int64 width
 int64 off
 ---
 ```
+Tanda `---` memisahkan bagian request dan response. Dalam hal ini, service `SetPen` hanya memiliki **request** tanpa ada **response**, yang berarti setelah request dikirim, tidak ada data yang dikembalikan oleh service.
+
+**Penjelasan Tiap Field dalam Request**
+1. **`r` (int64)** – Nilai merah (red) dalam warna RGB (0-255).
+2. **`g` (int64)** – Nilai hijau (green) dalam warna RGB (0-255).
+3. **`b` (int64)** – Nilai biru (blue) dalam warna RGB (0-255).
+4. **`width` (int64)** – Ketebalan garis yang akan digambar oleh **turtle**.
+5. **`off` (int64)** – Status pena:
+   - `0`: Pena menyala (turtle akan menggambar garis).
+   - `1`: Pena mati (turtle tidak menggambar garis).
+
+**Kesimpulan**
+- Service **`/turtle1/set_pen`** digunakan untuk mengatur warna dan ketebalan garis yang digambar oleh **TurtleSim**.
+- Service ini hanya menerima request tanpa memberikan response.
+- Kita dapat mengatur warna menggunakan nilai RGB, mengubah ketebalan garis dengan `width`, dan menonaktifkan pena menggunakan `off`.
 Bagian atas adalah **request**, sedangkan bagian setelah "---" adalah **response** (dalam kasus ini kosong karena tidak ada data yang dikembalikan).
 
 ---
