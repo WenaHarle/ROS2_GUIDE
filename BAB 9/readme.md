@@ -420,10 +420,13 @@ Setelah kita selesai membuat dan mengatur semua hal yang diperlukan, saatnya men
     ```
     [ERROR] [<timestamp>] [turtle_pen]: Service call failed: <error_message>
 
+### Hasil
+   
+   <p align="center">
+     <img src="images/subcriber_turtle.png" alt="workspace" />
+   </p>
 
-## 5. README.md
+Setelah menjalankan `pose_subscriber`, Anda akan menerima data posisi dan orientasi TurtleSim secara real-time.
 
-Tambahkan README.md berisi panduan instalasi, penggunaan, dan contoh eksekusi kode.
-
-Dengan memahami struktur kode ini, Anda dapat dengan mudah mengembangkan aplikasi ROS 2 lainnya! 🚀
+---
 
