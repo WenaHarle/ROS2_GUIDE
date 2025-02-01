@@ -240,13 +240,14 @@ ros2 topic echo /turtle1/pose
 ---
 
 ## Hasil
+
+   <p align="center">
+     <img src="images/closeloop.png" alt="workspace" />
+   </p>
+   
 TurtleSim akan terus bergerak maju dan berbelok saat mendekati tepi layar.
 
 ---
 
 Selamat mencoba! 🚀
 
-
-   <p align="center">
-     <img src="images/depend.png" alt="workspace" />
-   </p>
