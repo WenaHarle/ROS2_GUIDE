@@ -134,4 +134,3 @@ Silakan lanjutkan ke BAB berikutnya untuk mempelajari cara menulis node ROS 2 de
 ---
 
 ## **Sumber Tambahan**
-Untuk pembelajaran yang lebih lengkap, pertimbangkan mengikuti kursus ROS 2 10-jam. Detail ada di deskripsi seri tutorial.
