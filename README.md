@@ -12,5 +12,3 @@
 8. **Mengontrol dengan Gaya: Sistem Close-loop**
 9. **Service dan Client: Kolaborasi yang Sempurna**
 10. **URDF: Peta Tubuh Robot dalam Dunia Virtual**
-11. **Ciptakan Simulasi Statis dengan Sentuhan ROS 2**
-12. **Hidupkan Robotmu dengan Simulasi Dinamis**
